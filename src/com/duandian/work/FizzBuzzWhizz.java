@@ -46,6 +46,9 @@ public class FizzBuzzWhizz {
 		for(i = 0; i < 10; i++){
 			studentSays[num * 10 + i] = s;
 		}
+		for(i = 0; i + num * 100 <= 100; i++){
+			studentSays[i + num * 100] = s;
+		}
 	}
 	
 	public void play(){
