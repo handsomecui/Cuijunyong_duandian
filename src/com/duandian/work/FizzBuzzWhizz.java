@@ -3,19 +3,26 @@ package com.duandian.work;
 import java.util.Scanner;
 
 public class FizzBuzzWhizz {
-	private Student[] students; //玩这个游戏的学生
+	private final static int N = 100;
+	private String[] studentSays; //玩这个游戏的学生的回复信息
 	private Integer supernum1;  //第一个特殊数
 	private Integer supernum2;  //第二个特殊数
 	private Integer supernum3;  //第三个特殊数
-	private Scanner cin = new Scanner(System.in); 
-	public void init(int n){
-		students = new Student[n];
-		for(int i = 0; i < n; i++){
-			students[i] = new Student(i + 1);
+	private Scanner cin; 
+	public void init(){
+		studentSays = new String[N + 1];
+		for(int i = 1; i <= N; i++){
+			studentSays[i] = "";
 		}
+		cin = new Scanner(System.in);
+		getSuper();
+		dabiao_first(supernum1,"Fizz");
+		dabiao_first(supernum2,"Buzz");
+		dabiao_first(supernum3,"Whizz");
+		dabiao_sec(supernum1,"Fizz");
 	}
 
-	public void getSuper(){
+	public synchronized void getSuper(){
 		String line = cin.nextLine();
 		line = line.trim();
 		supernum1 = line.charAt(0) - '0';
@@ -23,49 +30,39 @@ public class FizzBuzzWhizz {
 		supernum3 = line.charAt(4) - '0';
 	}
 
-	public void handle(int value){
-		if(cludeSuperNum1(value)){
-			say("Fizz");
-		}else if(value % supernum1 == 0 || value % supernum2 == 0 || value % supernum3 == 0){
-			if(value % supernum1 == 0){
-				say("Fizz");
-			}
-			if(value % supernum2 == 0){
-				say("Buzz");
-			}
-			if(value % supernum3 == 0){
-				say("Whizz");
-			}
-		}else{
-			say(value);
+	//对num的倍数加上字符串s
+	public void dabiao_first(int num, String s){
+		for(int i = num; i <= N; i += num){
+			studentSays[i] += s;
 		}
-		System.out.println();
 	}
-	private boolean cludeSuperNum1(int value) {
-		while(value != 0){
-			if(value % 10 == supernum1){
-				return true;
-			}
-			value /= 10;
+	
+	//主要针对第六条限制，将十位或者个位包含num的数字等于Fizz
+	public void dabiao_sec(int num, String s){
+		int i;
+		for(i = 0; i + num <= N; i += 10){
+			studentSays[i + num] = s;
 		}
-		return false;
+		for(i = 0; i < 10; i++){
+			studentSays[num * 10 + i] = s;
+		}
 	}
 	
 	public void play(){
 		int i;
-		for(i = 0; i < students.length; i++){
-			handle(students[i].getValue());
+		for(i = 1; i < studentSays.length; i++){
+			if("".equals(studentSays[i])){
+				say(i);
+			}else{
+				say(studentSays[i]);
+			}
 		}
 	}
 	
-	public Student[] getStudents() {
-		return students;
+	public synchronized void say(String s){
+		System.out.println(s);
 	}
-
-	public void say(String s){
-		System.out.print(s);
-	}
-	public void say(Integer s){
-		System.out.print(s);
+	public synchronized void say(Integer s){
+		System.out.println(s);
 	}
 }

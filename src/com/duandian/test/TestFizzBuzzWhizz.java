@@ -7,10 +7,9 @@ import com.duandian.work.FizzBuzzWhizz;
 public class TestFizzBuzzWhizz {
 	
 	@Test
-	public void test1(){
+	public void test(){
 		FizzBuzzWhizz fizzBuzzWhizz = new FizzBuzzWhizz();
-		fizzBuzzWhizz.init(100);
-		fizzBuzzWhizz.getSuper();
+		fizzBuzzWhizz.init();
 		fizzBuzzWhizz.play();
 	}
 }

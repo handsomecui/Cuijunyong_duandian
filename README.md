@@ -3,6 +3,4 @@
 
 项目描述：本项目存在两个包里 work里面是作业的代码，test里面是测试的代码
 运行环境为：jdk8.0
-运行方法： 将代码克隆到Eclipse，打开test包下的TestFizzBuzzWhizz.java文件，右键点击Run As下的Junit Test，然后在控制台输入三个特殊数字。
-
-项目想法：感觉也没啥坑点啊，圈复杂度要少，但是总归要判断啊！代码里面的Student感觉有点多余，但是为了突出面向对象，玩一个游戏总要有同学参与吧，感觉给了好长时间，我就交了这点代码，好尴尬啊！可能我太菜了，没有理解到面试大神的真实用意。
+运行方法： 将代码克隆到Eclipse，打开test包下的TestFizzBuzzWhizz.java文件，右键点击Run As下的Junit Test，然后在控制台输入三个数字,回车。
