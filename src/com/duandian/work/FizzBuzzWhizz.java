@@ -23,7 +23,7 @@ public class FizzBuzzWhizz {
 
 	public void handle(int value){
 		if(cludeSuperNum1(value)){
-			say("Fize");
+			say("Fizz");
 		}else if(value % supernum1 == 0 || value % supernum2 == 0 || value % supernum3 == 0){
 			if(value % supernum1 == 0 && value % supernum2 == 0 && value % supernum3 == 0){
 				say("FizzBuzzWhizz");
@@ -44,8 +44,10 @@ public class FizzBuzzWhizz {
 					say("Whizz");
 				}
 			}
+		}else{
+			say(value);
 		}
-		say(value);
+		
 	}
 	private boolean cludeSuperNum1(int value) {
 		while(value != 0){
